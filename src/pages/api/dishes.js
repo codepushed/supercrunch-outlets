@@ -1,10 +1,18 @@
 import { createClient } from '@supabase/supabase-js';
+import supabase from '../../lib/supabaseClient';
 
-// Create a Supabase client with the service role key (bypasses RLS)
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
+// Create a Supabase client with the service role key (bypasses RLS) - only for admin operations
+const getSupabaseAdmin = () => {
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!serviceRoleKey) {
+    console.warn('SUPABASE_SERVICE_ROLE_KEY not set, admin operations will fail');
+    return null;
+  }
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    serviceRoleKey
+  );
+};
 
 // Helper function to clean dish data before saving
 const cleanDishData = (dish) => {
@@ -46,19 +54,27 @@ export default async function handler(req, res) {
   const { method, body } = req;
   
   // For GET requests, we allow public access for the home page
+  // For other methods, require authentication and admin client
+  let supabaseAdmin = null;
+
   if (method !== 'GET') {
+    supabaseAdmin = getSupabaseAdmin();
+    if (!supabaseAdmin) {
+      return res.status(500).json({ error: 'Server configuration error - admin operations unavailable' });
+    }
+
     try {
       // For all other methods, require authentication
       const authHeader = req.headers.authorization;
       if (!authHeader || !authHeader.startsWith('Bearer ')) {
         return res.status(401).json({ error: 'Unauthorized - No valid token provided' });
       }
-      
+
       const token = authHeader.split(' ')[1];
-      
+
       // Verify the token
       const { data, error: authError } = await supabaseAdmin.auth.getUser(token);
-      
+
       if (authError || !data || !data.user) {
         console.error('Auth error:', authError);
         return res.status(401).json({ error: 'Unauthorized - Invalid token', details: authError ? authError.message : 'No user found' });
@@ -73,17 +89,18 @@ export default async function handler(req, res) {
   switch (method) {
     case 'GET':
       try {
-        const { data, error } = await supabaseAdmin
+        // Use public client for GET requests
+        const { data, error } = await supabase
           .from('dishes')
           .select('*')
           .order('category')
           .order('name');
-          
+
         if (error) throw error;
-        
+
         // Process dishes for client
-        const processedData = data.map(processDishForClient);
-        
+        const processedData = (data || []).map(processDishForClient);
+
         return res.status(200).json(processedData);
       } catch (error) {
         console.error('API error:', error);
