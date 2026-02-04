@@ -1,0 +1,1357 @@
+/* Import Stranger Things inspired fonts */
+@import url('https://fonts.googleapis.com/css2?family=Benguiat+Pro:wght@700&family=Courier+Prime:wght@400;700&family=Special+Elite&display=swap');
+
+/* ============================================
+   COMMON STYLES - Shared across all pages
+   ============================================ */
+
+/* Scanline effect for CRT monitor look */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  animation: scanlineMove 8s linear infinite;
+}
+
+@keyframes scanlineMove {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(10px); }
+}
+
+/* VHS noise overlay */
+.vhsNoise {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  animation: noiseAnim 0.2s infinite;
+}
+
+@keyframes noiseAnim {
+  0%, 100% { opacity: 0.03; }
+  50% { opacity: 0.06; }
+}
+
+/* ============================================
+   PAGE 1: GATE PAGE STYLES
+   ============================================ */
+
+.gateContainer {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #0a0a0f 0%, #1a0a0f 50%, #0a0a0f 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Courier Prime', monospace;
+}
+
+/* Animated portal background */
+.portalBackground {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portalRing {
+  position: absolute;
+  border: 2px solid rgba(255, 0, 0, 0.3);
+  border-radius: 50%;
+  animation: portalPulse 3s ease-in-out infinite;
+}
+
+.portalRing:nth-child(1) {
+  width: 200px;
+  height: 200px;
+  animation-delay: 0s;
+}
+
+.portalRing:nth-child(2) {
+  width: 350px;
+  height: 350px;
+  animation-delay: 0.3s;
+}
+
+.portalRing:nth-child(3) {
+  width: 500px;
+  height: 500px;
+  animation-delay: 0.6s;
+}
+
+.portalRing:nth-child(4) {
+  width: 650px;
+  height: 650px;
+  animation-delay: 0.9s;
+}
+
+.portalRing:nth-child(5) {
+  width: 800px;
+  height: 800px;
+  animation-delay: 1.2s;
+}
+
+@keyframes portalPulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+    border-color: rgba(255, 0, 0, 0.8);
+  }
+  50% {
+    opacity: 0.6;
+    border-color: rgba(200, 0, 0, 0.6);
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+    border-color: rgba(150, 0, 0, 0.2);
+  }
+}
+
+.gateContent {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  padding: 2rem;
+  max-width: 600px;
+  width: 100%;
+}
+
+.gateTitle {
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 700;
+  color: #ff0000;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  margin-bottom: 3rem;
+  font-family: 'Special Elite', cursive;
+  /* text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000; */
+}
+
+.gateForm {
+  width: 100%;
+}
+
+.inputContainer {
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.gateInput {
+  width: 100%;
+  padding: 1.5rem 2rem;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #ff0000;
+  color: #ff0000;
+  text-align: center;
+  font-family: 'Courier Prime', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  box-shadow: 
+    0 0 10px rgba(255, 0, 0, 0.3),
+    inset 0 0 20px rgba(255, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.gateInput:focus {
+  outline: none;
+  border-color: #ff3333;
+  box-shadow: 
+    0 0 20px rgba(255, 0, 0, 0.6),
+    inset 0 0 30px rgba(255, 0, 0, 0.2);
+}
+
+.gateInput::placeholder {
+  color: rgba(255, 0, 0, 0.5);
+}
+
+.inputError {
+  animation: shake 0.4s ease-in-out;
+}
+
+.inputError .gateInput {
+  border-color: #ff0000;
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
+.errorText {
+  color: #ff0000;
+  font-size: 1.2rem;
+  letter-spacing: 0.2em;
+  margin-top: 1rem;
+  text-shadow: 0 0 10px #ff0000;
+  animation: blink 0.5s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* Floating particles */
+.particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #ff0000;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #ff0000;
+  animation: particleFloat 4s infinite ease-in-out;
+}
+
+.particle:nth-child(odd) {
+  animation-duration: 5s;
+}
+
+.particle:nth-child(1) { top: 10%; left: 20%; animation-delay: 0s; }
+.particle:nth-child(2) { top: 20%; left: 80%; animation-delay: 0.5s; }
+.particle:nth-child(3) { top: 30%; left: 40%; animation-delay: 1s; }
+.particle:nth-child(4) { top: 40%; left: 60%; animation-delay: 1.5s; }
+.particle:nth-child(5) { top: 50%; left: 10%; animation-delay: 2s; }
+.particle:nth-child(6) { top: 60%; left: 90%; animation-delay: 2.5s; }
+.particle:nth-child(7) { top: 70%; left: 30%; animation-delay: 3s; }
+.particle:nth-child(8) { top: 80%; left: 70%; animation-delay: 3.5s; }
+.particle:nth-child(9) { top: 15%; left: 50%; animation-delay: 0.8s; }
+.particle:nth-child(10) { top: 85%; left: 50%; animation-delay: 1.8s; }
+.particle:nth-child(11) { top: 25%; left: 15%; animation-delay: 2.2s; }
+.particle:nth-child(12) { top: 45%; left: 85%; animation-delay: 2.8s; }
+.particle:nth-child(13) { top: 55%; left: 25%; animation-delay: 0.3s; }
+.particle:nth-child(14) { top: 65%; left: 75%; animation-delay: 1.3s; }
+.particle:nth-child(15) { top: 75%; left: 45%; animation-delay: 2.3s; }
+.particle:nth-child(16) { top: 35%; left: 65%; animation-delay: 3.3s; }
+.particle:nth-child(17) { top: 5%; left: 35%; animation-delay: 0.6s; }
+.particle:nth-child(18) { top: 95%; left: 55%; animation-delay: 1.6s; }
+.particle:nth-child(19) { top: 12%; left: 72%; animation-delay: 2.6s; }
+.particle:nth-child(20) { top: 88%; left: 28%; animation-delay: 3.6s; }
+
+@keyframes particleFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.5);
+    opacity: 0.8;
+  }
+}
+
+/* ============================================
+   PAGE 2: PREMIERE PAGE STYLES
+   ============================================ */
+
+.premiereContainer {
+  min-height: 100vh;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+}
+
+/* Music Toggle Button */
+.musicToggle {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 100;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 0, 0, 0.8);
+  border: 2px solid #ff0000;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+  transition: all 0.3s ease;
+}
+
+.musicToggle:hover {
+  background: rgba(255, 0, 0, 1);
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.9);
+}
+
+/* Background Image Wrapper */
+.backgroundImageWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.backgroundImage {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Content Overlay */
+.premiereContentOverlay {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 1200px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem 2rem;
+  gap: 0.5rem;
+}
+
+/* Super Crunch Branding */
+.superCrunchBranding {
+  text-align: center;
+  margin-bottom: 12rem;
+  flex-shrink: 0;
+  margin-top: 80px;
+}
+
+.superCrunchTitle {
+  font-size: clamp(1rem, 2vw, 2rem);
+  font-weight: 700;
+  color: #F7C861;
+  letter-spacing: 0.3em;
+  font-family: 'Special Elite', cursive;
+  text-shadow: 
+    0 0 30px rgba(247, 200, 97, 1),
+    0 0 60px rgba(247, 200, 97, 0.8),
+    0 0 90px rgba(247, 200, 97, 0.5),
+    0 2px 0 rgba(0, 0, 0, 0.5);
+  margin: 0;
+  line-height: 0;
+}
+
+.presentsText {
+ font-size: clamp(1rem, 2vw, 1rem);
+  color: #ff0000;
+  letter-spacing: 0.5em;
+  font-family: 'Courier Prime', monospace;
+  text-shadow: 
+    0 0 20px rgba(255, 0, 0, 1),
+    0 0 40px rgba(255, 0, 0, 0.8),
+    0 0 60px rgba(255, 0, 0, 0.5);
+  margin: 1rem 0 0 0;
+  font-weight: 400;
+  text-transform: lowercase;
+}
+
+.logoImageContainer {
+  text-align: center;
+  margin: 0 0 0.5rem 0;
+  width: 100%;
+  max-width: 550px;
+  display: flex;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logoImage {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 30px rgba(255, 0, 0, 0.8)) 
+          drop-shadow(0 0 60px rgba(255, 0, 0, 0.6));
+}
+
+.eventDetails {
+  text-align: center;
+  margin: 0 0 1rem 0;
+  flex-shrink: 0;
+}
+
+.premiereText,
+.dateText {
+  font-size: clamp(0.8rem, 1.6vw, 1rem);
+  color: #ffffff;
+  letter-spacing: 0.15em;
+  font-family: 'Courier Prime', monospace;
+  text-shadow: 
+    0 0 12px rgba(0, 0, 0, 0.9),
+    0 0 25px rgba(255, 255, 255, 0.7);
+  margin: 0.3rem 0;
+  font-weight: 400;
+}
+
+.bookButton {
+  padding: 1.1rem 2.8rem;
+  font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+  background: linear-gradient(180deg, rgba(255, 90, 90, 0.95) 0%, rgba(255, 50, 50, 0.95) 100%);
+  color: #000000;
+  border: none;
+  font-family: 'Courier Prime', monospace;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  text-transform: uppercase;
+  box-shadow: 
+    0 0 35px rgba(255, 100, 100, 0.9),
+    0 0 60px rgba(255, 50, 50, 0.6),
+    inset 0 0 25px rgba(255, 255, 255, 0.25);
+  transition: all 0.3s ease;
+  margin: 1rem 0;
+  border-radius: 5px;
+  flex-shrink: 0;
+}
+
+.bookButton:hover {
+  background: linear-gradient(180deg, rgba(255, 110, 110, 1) 0%, rgba(255, 70, 70, 1) 100%);
+  box-shadow: 
+    0 0 45px rgba(255, 100, 100, 1),
+    0 0 70px rgba(255, 50, 50, 0.8);
+  transform: translateY(-2px);
+}
+
+.rulesContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.rule {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.ruleIcon {
+  font-size: 2rem;
+  filter: grayscale(0.2) brightness(0.95);
+  flex-shrink: 0;
+}
+
+.rule p {
+  font-size: clamp(0.75rem, 1.5vw, 1rem);
+  color: #ffffff;
+  font-family: 'Courier Prime', monospace;
+  letter-spacing: 0.1em;
+  text-shadow: 
+    0 0 10px rgba(0, 0, 0, 0.95),
+    0 0 20px rgba(255, 255, 255, 0.5);
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.glitchOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 8;
+  animation: glitch 5s infinite;
+  opacity: 0;
+}
+
+@keyframes glitch {
+  0%, 90%, 100% { opacity: 0; }
+  91% { 
+    opacity: 0.1;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 0, 0, 0.1) 50%, transparent 100%);
+  }
+  92% { opacity: 0; }
+  93% {
+    opacity: 0.15;
+    background: linear-gradient(90deg, rgba(0, 255, 255, 0.1) 0%, transparent 50%, rgba(255, 0, 0, 0.1) 100%);
+  }
+  94% { opacity: 0; }
+}
+
+/* ============================================
+   PAGE 3: BOOKING PAGE STYLES
+   ============================================ */
+
+.bookingContainer {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #000814 0%, #001d3d 50%, #000814 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 2rem 1rem;
+}
+
+.crtBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse at center, rgba(0, 100, 255, 0.05) 0%, transparent 70%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 100, 255, 0.03),
+      rgba(0, 100, 255, 0.03) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.glitchBars {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.glitchBarLeft,
+.glitchBarRight {
+  position: absolute;
+  width: 20px;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    rgba(255, 0, 0, 0.3) 0%,
+    rgba(0, 255, 255, 0.3) 50%,
+    rgba(255, 0, 0, 0.3) 100%
+  );
+  animation: glitchBarMove 3s infinite;
+}
+
+.glitchBarLeft {
+  left: 0;
+  animation-delay: 0s;
+}
+
+.glitchBarRight {
+  right: 0;
+  animation-delay: 1.5s;
+}
+
+@keyframes glitchBarMove {
+  0%, 100% { opacity: 0; transform: translateY(0); }
+  10% { opacity: 0.5; }
+  50% { opacity: 0.3; transform: translateY(50vh); }
+  90% { opacity: 0.5; }
+}
+
+.bookingContent {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 600px;
+}
+
+.bookingForm {
+  background: rgba(0, 10, 20, 0.9);
+  border: 3px solid rgba(0, 150, 255, 0.6);
+  padding: 2rem;
+  box-shadow: 
+    0 0 30px rgba(0, 150, 255, 0.4),
+    inset 0 0 30px rgba(0, 150, 255, 0.1);
+  font-family: 'Courier Prime', monospace;
+}
+
+.bookingTitle {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: #00d9ff;
+  text-align: center;
+  letter-spacing: 0.3em;
+  margin-bottom: 2rem;
+  text-shadow: 
+    0 0 10px rgba(0, 217, 255, 0.8),
+    0 0 20px rgba(0, 217, 255, 0.5);
+  font-family: 'Special Elite', cursive;
+}
+
+.formSection {
+  margin: 1.5rem 0;
+}
+
+.formLabel {
+  display: block;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: #00d9ff;
+  letter-spacing: 0.15em;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 5px rgba(0, 217, 255, 0.5);
+}
+
+.divider {
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%,
+    rgba(255, 0, 0, 0.5) 50%,
+    transparent 100%
+  );
+  margin: 1.5rem 0;
+}
+
+.ticketCounter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.counterBtn {
+  padding: 0.8rem 1.5rem;
+  font-size: 1.5rem;
+  background: rgba(0, 0, 0, 0.7);
+  color: #00d9ff;
+  border: 2px solid #00d9ff;
+  font-family: 'Courier Prime', monospace;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 217, 255, 0.3);
+}
+
+.counterBtn:hover {
+  background: rgba(0, 217, 255, 0.2);
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+}
+
+.ticketCount {
+  font-size: 2rem;
+  color: #00d9ff;
+  font-weight: 700;
+  min-width: 50px;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(0, 217, 255, 0.8);
+}
+
+.snacksGrid {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.checkbox {
+  display: none;
+}
+
+.checkboxText {
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: #00d9ff;
+  letter-spacing: 0.1em;
+  position: relative;
+  padding-left: 2rem;
+  transition: all 0.3s ease;
+}
+
+.checkboxText::before {
+  content: '[ ]';
+  position: absolute;
+  left: 0;
+  color: #00d9ff;
+}
+
+.checkbox:checked + .checkboxText::before {
+  content: '[X]';
+  color: #ff0000;
+  text-shadow: 0 0 10px #ff0000;
+}
+
+.checkbox:checked + .checkboxText {
+  color: #ff0000;
+  text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+.formInput {
+  width: 100%;
+  padding: 1rem;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #00d9ff;
+  color: #00d9ff;
+  font-family: 'Courier Prime', monospace;
+  letter-spacing: 0.1em;
+  margin: 0.5rem 0;
+  box-shadow: 
+    0 0 10px rgba(0, 217, 255, 0.3),
+    inset 0 0 10px rgba(0, 217, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: #ff0000;
+  box-shadow: 
+    0 0 20px rgba(255, 0, 0, 0.5),
+    inset 0 0 20px rgba(255, 0, 0, 0.1);
+  color: #ff0000;
+}
+
+.formInput::placeholder {
+  color: rgba(0, 217, 255, 0.5);
+}
+
+.formSelect {
+  width: 100%;
+  padding: 1rem;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #00d9ff;
+  color: #00d9ff;
+  font-family: 'Courier Prime', monospace;
+  letter-spacing: 0.1em;
+  margin: 0.5rem 0;
+  box-shadow: 
+    0 0 10px rgba(0, 217, 255, 0.3),
+    inset 0 0 10px rgba(0, 217, 255, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.formSelect:focus {
+  outline: none;
+  border-color: #ff0000;
+  box-shadow: 
+    0 0 20px rgba(255, 0, 0, 0.5),
+    inset 0 0 20px rgba(255, 0, 0, 0.1);
+  color: #ff0000;
+}
+
+.formSelect option {
+  background: #000;
+  color: #00d9ff;
+  padding: 0.5rem;
+}
+
+/* Menu List Styles */
+.menuList {
+  margin: 1rem 0;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.menuList::-webkit-scrollbar {
+  width: 8px;
+}
+
+.menuList::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #00d9ff;
+}
+
+.menuList::-webkit-scrollbar-thumb {
+  background: #00d9ff;
+  box-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+}
+
+.menuItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #00d9ff;
+  transition: all 0.3s ease;
+}
+
+.menuItem:hover {
+  background: rgba(0, 217, 255, 0.1);
+  box-shadow: 0 0 15px rgba(0, 217, 255, 0.3);
+}
+
+.menuItemInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex: 1;
+}
+
+.menuItemName {
+  font-size: clamp(0.85rem, 1.8vw, 1rem);
+  color: #00d9ff;
+  font-family: 'Courier Prime', monospace;
+  letter-spacing: 0.05em;
+}
+
+.menuItemPrice {
+  font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+  color: #ff0000;
+  font-family: 'Courier Prime', monospace;
+  font-weight: 700;
+}
+
+.menuItemControls {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.menuBtn {
+  padding: 0.4rem 0.8rem;
+  font-size: 1rem;
+  background: rgba(0, 217, 255, 0.2);
+  color: #00d9ff;
+  border: 1px solid #00d9ff;
+  font-family: 'Courier Prime', monospace;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.menuBtn:hover {
+  background: rgba(0, 217, 255, 0.4);
+  box-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+}
+
+.menuQty {
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: #00d9ff;
+  font-family: 'Courier Prime', monospace;
+  font-weight: 700;
+  min-width: 30px;
+  text-align: center;
+}
+
+.totalSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin-top: 1rem;
+  background: rgba(255, 0, 0, 0.1);
+  border: 2px solid #ff0000;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+}
+
+.totalLabel {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: #ff0000;
+  font-family: 'Courier Prime', monospace;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+.totalAmount {
+  font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+  color: #ff0000;
+  font-family: 'Courier Prime', monospace;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+}
+
+.pricingBreakdown {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #00d9ff;
+}
+
+.priceRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed rgba(0, 217, 255, 0.3);
+}
+
+.priceLabel {
+  font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+  color: #00d9ff;
+  font-family: 'Courier Prime', monospace;
+  letter-spacing: 0.1em;
+}
+
+.priceValue {
+  font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+  color: #00d9ff;
+  font-family: 'Courier Prime', monospace;
+  font-weight: 700;
+}
+
+.loadingText {
+  color: #00d9ff;
+  font-family: 'Courier Prime', monospace;
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+}
+
+.menuItemsList {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+  color: #00d9ff;
+  font-family: 'Courier Prime', monospace;
+}
+
+.menuItemsList li {
+  padding: 0.3rem 0;
+  font-size: clamp(0.85rem, 1.6vw, 1rem);
+  letter-spacing: 0.05em;
+}
+
+.grandTotalText {
+  font-size: clamp(1.1rem, 2vw, 1.3rem) !important;
+  color: #ff0000 !important;
+  margin-top: 1rem !important;
+  padding-top: 1rem;
+  border-top: 2px solid #ff0000;
+}
+
+.paymentSection {
+  text-align: center;
+  margin-top: 2rem;
+  padding: 2rem 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #00d9ff;
+  box-shadow: 0 0 30px rgba(0, 217, 255, 0.4);
+}
+
+.paymentTitle {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: #00d9ff;
+  letter-spacing: 0.2em;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 15px rgba(0, 217, 255, 0.6);
+  font-family: 'Special Elite', cursive;
+}
+
+.paymentInstructions {
+  font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+  color: #ff0000;
+  font-family: 'Courier Prime', monospace;
+  letter-spacing: 0.1em;
+  margin: 1.5rem 0;
+  line-height: 1.6;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+.contactInfo {
+  font-size: clamp(0.85rem, 1.6vw, 1rem);
+  color: #00d9ff;
+  font-family: 'Courier Prime', monospace;
+  letter-spacing: 0.08em;
+  margin-top: 1rem;
+}
+
+.contactInfo strong {
+  color: #ff0000;
+  text-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
+}
+
+.submitSection {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.scanText {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: #00d9ff;
+  letter-spacing: 0.15em;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+}
+
+.qrCodeContainer {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.95);
+  border: 3px solid #00d9ff;
+  box-shadow: 0 0 30px rgba(0, 217, 255, 0.6);
+  display: inline-block;
+}
+
+.qrCode {
+  width: 200px;
+  height: 200px;
+  filter: contrast(1.2);
+}
+
+.submitButton,
+.downloadBtn {
+  padding: 1.2rem 2rem;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  background: rgba(0, 217, 255, 0.2);
+  color: #00d9ff;
+  border: 2px solid #00d9ff;
+  font-family: 'Courier Prime', monospace;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+  text-transform: uppercase;
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.4);
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.submitButton:hover,
+.downloadBtn:hover {
+  background: rgba(0, 217, 255, 0.4);
+  box-shadow: 0 0 30px rgba(0, 217, 255, 0.6);
+}
+
+/* Access Pass Styles */
+.accessPass {
+  background: rgba(0, 10, 20, 0.95);
+  border: 3px solid #00d9ff;
+  padding: 3rem 2rem;
+  box-shadow: 
+    0 0 40px rgba(0, 217, 255, 0.6),
+    inset 0 0 40px rgba(0, 217, 255, 0.1);
+  text-align: center;
+}
+
+.passTitle {
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: #00ff00;
+  letter-spacing: 0.3em;
+  margin-bottom: 2rem;
+  text-shadow: 
+    0 0 10px rgba(0, 255, 0, 0.8),
+    0 0 20px rgba(0, 255, 0, 0.5);
+  font-family: 'Special Elite', cursive;
+  animation: accessGranted 1s ease-out;
+}
+
+@keyframes accessGranted {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.passContent {
+  margin-top: 2rem;
+}
+
+.passInfo {
+  text-align: left;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #00d9ff;
+}
+
+.passInfo p {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: #00d9ff;
+  margin: 0.5rem 0;
+  font-family: 'Courier Prime', monospace;
+  letter-spacing: 0.1em;
+}
+
+.passInfo strong {
+  color: #ffffff;
+}
+
+.barcodeContainer {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #00d9ff;
+}
+
+.barcode {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 80px;
+  margin-bottom: 1rem;
+  gap: 1px;
+}
+
+.barcodeLine {
+  background: #000;
+  height: 100%;
+  animation: barcodeFlicker 3s infinite;
+}
+
+.barcodeLine:nth-child(odd) {
+  height: 90%;
+}
+
+.barcodeLine:nth-child(3n) {
+  height: 70%;
+}
+
+@keyframes barcodeFlicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+.barcodeText {
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  color: #000;
+  font-family: 'Courier Prime', monospace;
+  letter-spacing: 0.1em;
+  margin: 0.3rem 0;
+}
+
+.staticNoise {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  animation: staticMove 0.1s infinite;
+}
+
+@keyframes staticMove {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-2px, 2px); }
+  50% { transform: translate(2px, -2px); }
+  75% { transform: translate(-2px, -2px); }
+  100% { transform: translate(2px, 2px); }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+  .gateTitle {
+    font-size: 2rem;
+    letter-spacing: 0.2em;
+  }
+
+  .gateInput {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .premiereContentOverlay {
+    padding: 2rem 1rem;
+    gap: 0.6rem;
+  }
+
+  .superCrunchBranding {
+    margin-bottom: 1.5rem;
+  }
+
+  .superCrunchTitle {
+    font-size: 2.2rem;
+    letter-spacing: 0.2em;
+  }
+
+  .presentsText {
+    font-size: 1rem;
+    letter-spacing: 0.4em;
+    margin: 0.7rem 0 0 0;
+  }
+
+  .logoImageContainer {
+    max-width: 80%;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .eventDetails {
+    margin: 0.5rem 0;
+  }
+
+  .premiereText,
+  .dateText {
+    font-size: 0.75rem;
+  }
+
+  .rulesContainer {
+    gap: 1.2rem;
+    margin-top: 1.2rem;
+    flex-direction: column;
+  }
+
+  .rule {
+    gap: 0.6rem;
+  }
+
+  .ruleIcon {
+    font-size: 1.7rem;
+  }
+
+  .rule p {
+    font-size: 0.85rem;
+  }
+
+  .bookButton {
+    padding: 0.95rem 2.2rem;
+    font-size: 0.95rem;
+    margin: 1rem 0;
+  }
+
+  .musicToggle {
+    width: 45px;
+    height: 45px;
+    font-size: 1.3rem;
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+
+  .bookingForm {
+    padding: 1.5rem;
+  }
+
+  .bookingTitle {
+    font-size: 1.5rem;
+    letter-spacing: 0.2em;
+  }
+
+  .snacksGrid {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .ticketCounter {
+    gap: 1rem;
+  }
+
+  .qrCode {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gateTitle {
+    font-size: 1.5rem;
+  }
+
+  .premiereContentOverlay {
+    padding: 1.5rem 1rem;
+    gap: 0.4rem;
+  }
+
+  .superCrunchBranding {
+    margin-bottom: 1rem;
+    /* margin-top: 0px; */
+  }
+
+  .superCrunchTitle {
+    font-size: 1.8rem;
+    letter-spacing: 0.18em;
+  }
+
+  .presentsText {
+    font-size: 0.85rem;
+    letter-spacing: 0.35em;
+    margin: 0.6rem 0 0 0;
+  }
+
+  .logoImageContainer {
+    max-width: 85%;
+    margin: 0 0 0.4rem 0;
+  }
+
+  .eventDetails {
+    margin: 0.4rem 0;
+  }
+
+  .premiereText,
+  .dateText {
+    font-size: 0.65rem;
+    margin: 0.2rem 0;
+  }
+
+  .bookButton {
+    padding: 0.85rem 1.8rem;
+    font-size: 0.8rem;
+    margin: 0.8rem 0;
+  }
+
+  .rulesContainer {
+    gap: 0.9rem;
+    margin-top: 0.8rem;
+    flex-direction: row;
+  }
+
+  .ruleIcon {
+    font-size: 1.5rem;
+  }
+
+  .rule p {
+    font-size: 0.75rem;
+  }
+
+  .musicToggle {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .passTitle {
+    font-size: 1.8rem;
+  }
+}

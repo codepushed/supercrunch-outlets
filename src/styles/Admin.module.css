@@ -1,0 +1,542 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+}
+
+.main {
+  width: 100%;
+  max-width: 1200px;
+  padding: 2rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--super-crunch-blue);
+  padding: 20px 20px;
+}
+
+.headerTitleContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.brandTitle {
+  font-family: var(--font-luckiest-guy);
+  color: #F8B500; /* Super Crunch yellow */
+  font-size: 2.5rem;
+  margin: 0;
+  line-height: 1;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+}
+
+.headerTitle {
+  color: #fff;
+  font-size: 1.2rem;
+  margin: 0;
+  font-weight: normal;
+}
+
+.loginContainer {
+  width: 100%;
+  max-width: 400px;
+  margin: 4rem auto;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--super-crunch-border);
+}
+
+.loginTitle {
+  color: #000;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--super-crunch-blue);
+}
+
+.button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--super-crunch-yellow);
+  color: var(--foreground);
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.button:hover {
+  background-color: var(--super-crunch-orange);
+}
+
+.error {
+  color: var(--super-crunch-red);
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.dashboardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.dashboardControls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.dashboardTitle {
+  color: #000;
+  margin: 0;
+}
+
+.addButton {
+  background-color: var(--super-crunch-yellow);
+  color: var(--foreground);
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.addButton:hover {
+  background-color: var(--super-crunch-orange);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.table th,
+.table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.table th {
+  background-color: #f9f9f9;
+  font-weight: 600;
+}
+
+.actionButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  color: var(--super-crunch-blue);
+}
+
+.deleteButton {
+  color: var(--super-crunch-red);
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.modalTitle {
+  color: #000;
+  margin: 0;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #999;
+}
+
+.textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  min-height: 100px;
+  resize: vertical;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--super-crunch-blue);
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.cancelButton {
+  background-color: #f1f1f1;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.saveButton {
+  background-color: var(--super-crunch-yellow);
+  color: var(--foreground);
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.saveButton:hover {
+  background-color: var(--super-crunch-orange);
+}
+
+.logoutButton {
+  background-color: var(--super-crunch-yellow);
+  color: var(--foreground);
+  border: 1px solid var(--foreground);
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.logoutButton:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.loaderContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid var(--super-crunch-yellow);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Restaurant Status Toggle Styles */
+.statusToggleContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px;
+}
+
+.statusToggleWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.statusTitle {
+  margin-right: 10px;
+  font-weight: 500;
+  color: #333;
+}
+
+.toggleSwitch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+}
+
+.toggleInput {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggleLabel {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.toggleLabel:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.toggleInput:checked + .toggleLabel {
+  background-color: #F8B500; /* Super Crunch yellow */
+}
+
+.toggleInput:checked + .toggleLabel:before {
+  transform: translateX(30px);
+  background-color: white;
+}
+
+.toggleInput:focus + .toggleLabel {
+  box-shadow: 0 0 1px #F8B500;
+}
+
+.toggleInput:disabled + .toggleLabel {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.statusLabel {
+  margin-left: 10px;
+  font-weight: 600;
+  font-family: var(--font-poppins);
+}
+
+.statusOpen {
+  color: #F8B500; /* Super Crunch yellow */
+}
+
+.statusClosed {
+  color: #FF6B6B; /* Reddish color that matches the brand */
+}
+
+.statusError {
+  color: #FF6B6B;
+  font-size: 0.85rem;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+
+.statusLoading {
+  color: #666;
+  font-size: 0.85rem;
+  margin-left: 10px;
+  font-style: italic;
+}
+
+/* Tag System Styles */
+.tagInputContainer {
+  margin-bottom: 10px;
+}
+
+.tagsPreview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+  min-height: 30px;
+}
+
+.tagItem {
+  display: flex;
+  align-items: center;
+  background-color: var(--super-crunch-yellow);
+  color: var(--foreground);
+  padding: 4px 8px;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.removeTagButton {
+  background: none;
+  border: none;
+  color: var(--foreground);
+  margin-left: 6px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 0 2px;
+}
+
+.removeTagButton:hover {
+  color: var(--super-crunch-red);
+}
+
+.tagHelp {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 5px;
+}
+
+.tagContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.tag {
+  background-color: var(--super-crunch-yellow);
+  color: var(--foreground);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Image Upload Styles */
+.imagePreviewContainer {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.imagePreview {
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 2px solid #eee;
+}
+
+.imageHelp {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 5px;
+}
+
+.uploadingText {
+  color: var(--super-crunch-yellow);
+  font-size: 0.85rem;
+  margin-top: 5px;
+  font-style: italic;
+}
+
+.dishThumbnail {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #eee;
+}
+
+.noImage {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  color: #999;
+  text-align: center;
+  border: 2px dashed #ddd;
+}
+
+/* Visibility Badge Styles */
+.visibilityBadge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.visibleBadge {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.hiddenBadge {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Visibility Toggle Wrapper */
+.visibilityToggleWrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}

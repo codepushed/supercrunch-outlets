@@ -1,0 +1,134 @@
+.foodYouSection {
+  background-color: #F7C861;
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+}
+
+.visible {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0.5;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.foodYouContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
+}
+
+.foodYouText {
+  font-family: var(--font-smooch-sans);
+  font-weight: 700;
+  font-size: 15rem;
+  color: rgba(255, 230, 150, 0.5); /* Lighter version of the background */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.02);
+  margin: 0;
+  padding: 0;
+  letter-spacing: 0.02em;
+  text-align: center;
+  line-height: 0.8;
+  white-space: nowrap;
+  user-select: none;
+  transition: all 0.3s ease;
+  will-change: transform; /* Optimize for animations */
+}
+
+.visible .foodYouText {
+  animation: textReveal 1.2s ease-out forwards;
+}
+
+@keyframes textReveal {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.foodYouSection:hover .foodYouText {
+  color: rgba(255, 230, 150, 0.6);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .foodYouText {
+    font-size: 16rem;
+    transform: scale(1.1);
+  }
+  
+  @keyframes textReveal {
+    0% {
+      opacity: 0;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .foodYouText {
+    font-size: 12rem;
+    transform: scale(1);
+  }
+  
+  .foodYouSection {
+    min-height: 40vh;
+    padding: 60px 20px;
+  }
+  
+  @keyframes textReveal {
+    0% {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .foodYouText {
+    font-size: 8rem;
+  }
+  
+  .foodYouSection {
+    min-height: 30vh;
+  }
+}
+
+@media (max-width: 640px) {
+  .foodYouText {
+    font-size: 6rem;
+  }
+  
+  .foodYouSection {
+    padding: 40px 20px;
+    min-height: 25vh;
+  }
+}

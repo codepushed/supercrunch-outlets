@@ -1,26 +1,21 @@
 {
-  "name": "supercrunch-outlets",
+  "name": "supercrunch",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "next lint"
   },
   "dependencies": {
-    "next": "16.1.6",
-    "react": "19.2.3",
-    "react-dom": "19.2.3"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.1.6",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "@supabase/supabase-js": "^2.50.0",
+    "browser-image-compression": "^2.0.2",
+    "framer-motion": "^12.23.24",
+    "next": "15.3.8",
+    "nodemailer": "^7.0.10",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-ga4": "^2.1.0"
   }
 }

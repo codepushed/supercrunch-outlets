@@ -1,0 +1,58 @@
+[
+    {
+        "id": "1",
+        "name": "Garlic Bread",
+        "description": "Crispy golden bread baked to perfection, brushed with rich garlic butter and herbs.",
+        "image": "/fun-fair/garlic_bread.png",
+        "price": 69
+    },
+    {
+        "id": "2",
+        "name": "Garlic Bread Stuffed",
+        "description": "Golden, crispy bread loaded with sweet corns and a burst of garlic butter — every bite is a warm hug for your taste buds.",
+        "image": "/fun-fair/garlic_bread.png",
+        "price": 79
+    },
+    {
+        "id": "3",
+        "name": "Heart-Shaped Waffle with Belgian Chocolate Sauce",
+        "description": "Fluffy heart-shaped waffle drizzled with rich, velvety Belgian chocolate — love at first bite!",
+        "image": "/fun-fair/product.png",
+        "price": 69
+    },
+    {
+        "id": "4",
+        "name": "Heart-Shaped Waffle with Milky Bar Sauce",
+        "description": "Soft waffle hearts topped with silky white Milky Bar sauce — sweet, creamy, and simply dreamy.",
+        "image": "/fun-fair/product.png",
+        "price": 79
+    },
+    {
+        "id": "5",
+        "name": "Heart-Shaped Waffle with Dark Chocolate Sauce",
+        "description": "Crisp waffle hearts drenched in bold dark chocolate — a bittersweet romance on your plate.",
+        "image": "/fun-fair/product.png",
+        "price": 59
+    },
+    {
+        "id": "6",
+        "name": "Cupcake",
+        "description": "Moist, fluffy, and topped with creamy frosting — a little bite of happiness that melts in your mouth.",
+        "image": "/fun-fair/cupcake.png",
+        "price": 29
+    },
+    {
+        "id": "7",
+        "name": "White Sauce Pasta",
+        "description": "Pasta tossed in a rich, cheesy white sauce with herbs — creamy, comforting, and totally irresistible.",
+        "image": "/fun-fair/white.png",
+        "price": 49
+    },
+    {
+        "id": "8",
+        "name": "Veg Steam Momos",
+        "description": "Soft, delicate dumplings packed with a flavorful mix of garden-fresh veggies, steamed to perfection. Served hot, light.",
+        "image": "/fun-fair/momo.png",
+        "price": 39
+    }
+]
