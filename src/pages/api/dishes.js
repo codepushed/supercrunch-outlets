@@ -1,5 +1,4 @@
 import { createClient } from '@supabase/supabase-js';
-import supabase from '../../lib/supabaseClient';
 
 // Create a Supabase client with the service role key (bypasses RLS) - only for admin operations
 const getSupabaseAdmin = () => {
@@ -89,12 +88,16 @@ export default async function handler(req, res) {
   switch (method) {
     case 'GET':
       try {
-        // Use public client for GET requests
-        const { data, error } = await supabase
+        // Create a fresh client for GET requests
+        const publicClient = createClient(
+          process.env.NEXT_PUBLIC_SUPABASE_URL || '',
+          process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
+        );
+
+        const { data, error } = await publicClient
           .from('dishes')
           .select('*')
-          .order('category')
-          .order('name');
+          .order('category', { ascending: true });
 
         if (error) throw error;
 
